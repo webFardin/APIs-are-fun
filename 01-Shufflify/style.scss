@@ -1,6 +1,105 @@
+@use "sass:color";
+// cares about pacifico font
+@import "https://fonts.googleapis.com/css?family=Pacifico";
+@import "https://fonts.googleapis.com/css?family=Quicksand";
+
+:root {
+  --background-color: #131418;
+  --green-color-medium: #00ffdd;
+  --green-color-off: #00b39b;
+  --green-color-alpha: #00b39b63;
+  --green-color-alpha-hard: #00ffdd59;
+  --quicksand-font: "Quicksand";
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: var(--green-color-alpha-hard);
+}
+
+html {
+  font-size: 5vw;
+}
+
+body {
+  background: var(--background-color);
+  display: grid;
+  place-content: center;
+  min-height: 100vh;
+  font-family: var(--quicksand-font);
+  font-weight: bold;
+}
+
+.main-section {
+  .filters-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    .filters-inputs {
+      background: transparent;
+      outline: none;
+      color: var(--green-color-medium);
+      border-radius: 1rem;
+      padding: 0 1rem;
+      text-align: center;
+      width: 15rem;
+      height: 2.5rem;
+      font-size: 1rem;
+      font-family: "Quicksand";
+      font-weight: bold;
+      transition: 0.3s;
+
+      &::placeholder {
+        font-size: 1rem;
+        user-select: none;
+        color: var(--green-color-alpha);
+        transition: 0.3s;
+      }
+
+      &:focus {
+        border: 2px solid var(--green-color-medium) !important;
+
+        + .filters-labels {
+          color: var(--green-color-medium) !important;
+        }
+      }
+
+      &:placeholder-shown {
+        border: 2px solid var(--green-color-off);
+      }
+
+      &:not(:placeholder-shown) {
+        border: 2px solid var(--green-color-medium);
+
+        + .filters-labels {
+          color: var(--green-color-medium);
+        }
+      }
+    }
+
+    .filters-labels {
+      color: var(--green-color-off);
+      background: var(--background-color);
+      transform: translate(-13.8rem, -0.5rem);
+      padding: 0 0.3rem;
+      position: absolute;
+      user-select: none;
+      font-size: 0.8rem;
+      transition: 0.3s;
+    }
+  }
+}
+
+.main-section {
+  .actions-section {
+  }
 }
