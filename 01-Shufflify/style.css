@@ -4,10 +4,10 @@
   --background-color: #ffffff;
   --green-color-medium: #1ed760;
   --green-color-light: #1ed75fd5;
-  --green-color-off: #28c76085;
+  --green-color-dark: #1bc556d0;
+  --green-color-off: #28c76059;
   --green-color-alpha: #28c76069;
   --green-color-alpha-hard: #00ff5959;
-  --quicksand-font: "Quicksand";
 }
 
 * {
@@ -30,7 +30,7 @@ body {
   display: grid;
   place-content: center;
   min-height: 100vh;
-  font-family: var(--quicksand-font);
+  font-family: "Quicksand";
   font-weight: bold;
 }
 
@@ -46,7 +46,7 @@ body {
   outline: none;
   color: var(--green-color-medium);
   border-radius: 1rem;
-  padding: 0 1rem;
+  padding: 0 1.8rem;
   text-align: center;
   width: 15rem;
   height: 2.5rem;
@@ -61,17 +61,28 @@ body {
   color: var(--green-color-alpha);
   transition: 0.3s;
 }
+.main-section .filters-section .filters-inputs ~ .clear-input-icon {
+  color: var(--green-color-alpha);
+  position: absolute;
+  width: 1.1rem;
+  transform: translate(-1.7rem, 0.7rem);
+  display: none;
+  cursor: pointer;
+}
 .main-section .filters-section .filters-inputs:focus {
-  border: 2px solid var(--green-color-light) !important;
+  border: 0.1rem solid var(--green-color-light) !important;
 }
 .main-section .filters-section .filters-inputs:focus + .filters-labels {
   color: var(--green-color-light) !important;
 }
 .main-section .filters-section .filters-inputs:placeholder-shown {
-  border: 2px solid var(--green-color-off);
+  border: 0.1rem solid var(--green-color-off);
 }
 .main-section .filters-section .filters-inputs:not(:placeholder-shown) {
-  border: 2px solid var(--green-color-light);
+  border: 0.1rem solid var(--green-color-light);
+}
+.main-section .filters-section .filters-inputs:not(:placeholder-shown):focus ~ .clear-input-icon {
+  display: initial;
 }
 .main-section .filters-section .filters-inputs:not(:placeholder-shown) + .filters-labels {
   color: var(--green-color-light);
@@ -85,6 +96,29 @@ body {
   user-select: none;
   font-size: 0.8rem;
   transition: 0.3s;
+}
+
+.main-section .actions-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-top: 1.5rem;
+}
+.main-section .actions-section .favorites-button {
+  fill: var(--green-color-dark);
+  position: absolute;
+  transform: translate(-5rem, 0.2rem);
+  cursor: pointer;
+  display: none;
+}
+.main-section .actions-section .favorites-button .favorites-icon {
+  width: 2rem;
+  display: flex;
+}
+.main-section .actions-section .shuffle-button {
+  width: 4rem;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=style.css.map */

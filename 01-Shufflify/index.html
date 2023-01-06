@@ -15,7 +15,7 @@
   <body>
     <main class="main-section">
       <section class="filters-section">
-        <div>
+        <div class="input-wrapper">
           <input
             type="text"
             placeholder="Artist name"
@@ -23,8 +23,19 @@
             id="artistFilter"
           />
           <label for="artistFilter" class="filters-labels">artist</label>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            class="clear-input-icon"
+            viewBox="0 0 16 16"
+            data-input="artistFilter"
+          >
+            <path
+              d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+            />
+          </svg>
         </div>
-        <div>
+        <div class="input-wrapper">
           <input
             type="text"
             placeholder="punk-rock"
@@ -32,8 +43,19 @@
             id="genreFilter"
           />
           <label for="genreFilter" class="filters-labels">genre</label>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            class="clear-input-icon"
+            viewBox="0 0 16 16"
+            data-input="genreFilter"
+          >
+            <path
+              d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+            />
+          </svg>
         </div>
-        <div>
+        <div class="input-wrapper">
           <input
             type="text"
             placeholder="remaster"
@@ -41,8 +63,19 @@
             id="keywordsFilter"
           />
           <label for="keywordsFilter" class="filters-labels">keywords</label>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            class="clear-input-icon"
+            viewBox="0 0 16 16"
+            data-input="keywordsFilter"
+          >
+            <path
+              d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+            />
+          </svg>
         </div>
-        <div>
+        <div class="input-wrapper">
           <input
             type="text"
             placeholder="2015 - 2020 or 2018"
@@ -50,9 +83,130 @@
             id="yearsFilter"
           />
           <label for="yearsFilter" class="filters-labels">years</label>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            class="clear-input-icon"
+            viewBox="0 0 16 16"
+            data-input="yearsFilter"
+          >
+            <path
+              d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+            />
+          </svg>
         </div>
       </section>
-      <section class="actions-section"></section>
+      <section class="actions-section">
+        <div class="favorites-button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="favorites-icon"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+            />
+          </svg>
+        </div>
+        <div class="shuffle-button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="shuffle-icon"
+            viewBox="0 0 512.002 512.002"
+          >
+            <g>
+              <g>
+                <path
+                  d="m272.168 239.85-16.15 115.65-110.4 10.9c-.71-.71-1.78-1.07-3.39-1.25l-106.56 3.45c-14.95.49-28.04-8.23-33.36-22.21-5.54-14.48-.9-30.79 11.72-39.89l152.32-97.12c13-8.28 28.59-11.93 43.92-10.25 15.33 1.67 29.78 8.6 40.68 19.5z"
+                  fill="#ff8066"
+                  data-original="#ff8066"
+                ></path>
+                <path
+                  d="m302.638 345.67-97.12 152.32c-9.11 12.72-25.7 17.21-39.89 11.72-13.98-5.32-22.7-18.41-22.21-33.36l3.45-106.57c-.19-1.6-.55-2.67-1.25-3.38l126.55-126.55 21.22 21.22c10.9 10.9 17.83 25.35 19.5 40.68 1.68 15.32-1.97 30.92-10.25 43.92z"
+                  fill="#ff4d4d"
+                  data-original="#ff4d4d"
+                ></path>
+                <g>
+                  <g>
+                    <path
+                      d="m208.288 303.72v21.21h-21.21l-21.21-21.21c-5.86-5.86-5.86-15.35 0-21.21s15.36-5.86 21.21 0z"
+                      fill="#f2f0e6"
+                      data-original="#f2f0e6"
+                    ></path>
+                  </g>
+                </g>
+                <path
+                  d="m213.003 97.725h-10.325v-10.325c0-8.284-6.716-15-15-15s-15 6.716-15 15v10.324h-10.325c-8.284 0-15 6.716-15 15s6.716 15 15 15h10.325v10.325c0 8.284 6.716 15 15 15s15-6.716 15-15v-10.325h10.325c8.284 0 15-6.716 15-15s-6.716-14.999-15-14.999z"
+                  fill="#ffdd33"
+                  data-original="#ffdd33"
+                ></path>
+                <path
+                  d="m469.916 230.178h-10.325v-10.325c0-8.284-6.716-15-15-15s-15 6.716-15 15v10.325h-10.324c-8.284 0-15 6.716-15 15s6.716 15 15 15h10.324v10.325c0 8.284 6.716 15 15 15s15-6.716 15-15v-10.325h10.325c8.284 0 15-6.716 15-15s-6.716-15-15-15z"
+                  fill="#ffbb33"
+                  data-original="#ffbb33"
+                  class=""
+                ></path>
+                <path
+                  d="m417.358 94.65-39.092 73.4-144.988 110.68-16.21-16.21c-2.81-2.82-4.39-6.63-4.39-10.61s1.58-7.79 4.39-10.61l173.48-173.46 32.763-2.84z"
+                  fill="#4c618d"
+                  data-original="#4c618d"
+                ></path>
+                <path
+                  d="m444.187 121.48-173.47 173.47c-2.93 2.93-6.77 4.39-10.61 4.39s-7.68-1.46-10.61-4.39l-16.22-16.22 184.08-184.08 31.83-10.393z"
+                  fill="#283b67"
+                  data-original="#283b67"
+                ></path>
+                <path
+                  d="m481.408 30.6-9.411 59.155-54.639 4.895-26.81-26.81 41.64-61.27c2.51-3.7 6.54-6.08 10.99-6.5s8.86 1.16 12.02 4.32z"
+                  fill="#283b67"
+                  data-original="#283b67"
+                ></path>
+                <path
+                  d="m511.947 68.84c-.42 4.45-2.8 8.48-6.5 10.99l-61.24 41.63-.02.02-26.83-26.83 64.05-64.05 26.22 26.22c3.161 3.16 4.741 7.57 4.32 12.02z"
+                  fill="#17273f"
+                  data-original="#17273f"
+                ></path>
+                <path
+                  d="m229.508 346.15c-2.93 2.93-6.77 4.39-10.61 4.39-3.83 0-7.67-1.46-10.6-4.39l-21.22-21.22 21.21-21.21 21.22 21.22c5.86 5.85 5.86 15.35 0 21.21z"
+                  fill="#e6e6cf"
+                  data-original="#e6e6cf"
+                ></path>
+                <g>
+                  <path
+                    d="m128.651 12.035-46.19-11.55c-9.122-2.511-18.86 5.091-18.64 14.55v93.064l29.847 28.161c0-25.456.153-102.015.153-102.015l27.55 6.89c1.22.31 2.44.45 3.65.45 6.72 0 12.84-4.55 14.54-11.36 2.01-8.04-2.88-16.18-10.91-18.19z"
+                    fill="#ffbb33"
+                    data-original="#ffbb33"
+                    class=""
+                  ></path>
+                  <circle
+                    cx="46.843"
+                    cy="136.26"
+                    fill="#ff9933"
+                    r="46.825"
+                    data-original="#ff9933"
+                  ></circle>
+                </g>
+                <g>
+                  <path
+                    d="m500.656 340.95-46.19-11.55c-9.122-2.511-18.86 5.091-18.64 14.55v93.064l29.847 28.161c0-25.456.153-102.015.153-102.015l27.55 6.89c1.22.31 2.44.45 3.65.45 6.72 0 12.84-4.55 14.54-11.36 2.01-8.04-2.88-16.18-10.91-18.19z"
+                    fill="#9999ff"
+                    data-original="#9999ff"
+                  ></path>
+                  <circle
+                    cx="418.848"
+                    cy="465.175"
+                    fill="#8066ff"
+                    r="46.825"
+                    data-original="#8066ff"
+                    class=""
+                  ></circle>
+                </g>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </section>
     </main>
     <!-- <audio controls autoplay id="audio" src=""></audio> -->
   </body>
