@@ -1,14 +1,14 @@
-@use "sass:color";
 // cares about pacifico font
 @import "https://fonts.googleapis.com/css?family=Pacifico";
 @import "https://fonts.googleapis.com/css?family=Quicksand";
 
 :root {
-  --background-color: #131418;
-  --green-color-medium: #00ffdd;
-  --green-color-off: #00b39b;
-  --green-color-alpha: #00b39b63;
-  --green-color-alpha-hard: #00ffdd59;
+  --background-color: #ffffff;
+  --green-color-medium: #1ed760;
+  --green-color-light: #1ed75fd5;
+  --green-color-off: #28c76085;
+  --green-color-alpha: #28c76069;
+  --green-color-alpha-hard: #00ff5959;
   --quicksand-font: "Quicksand";
 }
 
@@ -66,10 +66,10 @@ body {
       }
 
       &:focus {
-        border: 2px solid var(--green-color-medium) !important;
+        border: 2px solid var(--green-color-light) !important;
 
         + .filters-labels {
-          color: var(--green-color-medium) !important;
+          color: var(--green-color-light) !important;
         }
       }
 
@@ -78,10 +78,10 @@ body {
       }
 
       &:not(:placeholder-shown) {
-        border: 2px solid var(--green-color-medium);
+        border: 2px solid var(--green-color-light);
 
         + .filters-labels {
-          color: var(--green-color-medium);
+          color: var(--green-color-light);
         }
       }
     }
