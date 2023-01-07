@@ -8,6 +8,7 @@
   --green-color-off: #28c76059;
   --green-color-alpha: #28c76069;
   --green-color-alpha-hard: #00ff5959;
+  --green-blue-color: #33b8b2;
 }
 
 * {
@@ -34,14 +35,20 @@ body {
   font-weight: bold;
 }
 
-.main-section .filters-section {
+.main-section .inputs-section {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 1rem;
 }
-.main-section .filters-section .filters-inputs {
+.main-section .inputs-section .input-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.main-section .inputs-section .filters-inputs {
   background: transparent;
   outline: none;
   color: var(--green-color-medium);
@@ -55,47 +62,99 @@ body {
   font-weight: bold;
   transition: 0.3s;
 }
-.main-section .filters-section .filters-inputs::placeholder {
+.main-section .inputs-section .filters-inputs::placeholder {
   font-size: 1rem;
   user-select: none;
   color: var(--green-color-alpha);
   transition: 0.3s;
 }
-.main-section .filters-section .filters-inputs ~ .clear-input-icon {
+.main-section .inputs-section .filters-inputs ~ .clear-input-icon {
   color: var(--green-color-alpha);
   position: absolute;
   width: 1.1rem;
-  transform: translate(-1.7rem, 0.7rem);
+  transform: translate(6.3rem, 0.7rem);
   display: none;
   cursor: pointer;
 }
-.main-section .filters-section .filters-inputs:focus {
+.main-section .inputs-section .filters-inputs:focus {
   border: 0.1rem solid var(--green-color-light) !important;
 }
-.main-section .filters-section .filters-inputs:focus + .filters-labels {
+.main-section .inputs-section .filters-inputs:focus + .inputs-labels {
   color: var(--green-color-light) !important;
 }
-.main-section .filters-section .filters-inputs:placeholder-shown {
+.main-section .inputs-section .filters-inputs:first-child:focus ~ .artists-search-list-wrapper {
+  display: flex;
+}
+.main-section .inputs-section .filters-inputs:placeholder-shown {
   border: 0.1rem solid var(--green-color-off);
 }
-.main-section .filters-section .filters-inputs:not(:placeholder-shown) {
+.main-section .inputs-section .filters-inputs:not(:placeholder-shown) {
   border: 0.1rem solid var(--green-color-light);
 }
-.main-section .filters-section .filters-inputs:not(:placeholder-shown):focus ~ .clear-input-icon {
+.main-section .inputs-section .filters-inputs:not(:placeholder-shown):focus ~ .clear-input-icon {
   display: initial;
 }
-.main-section .filters-section .filters-inputs:not(:placeholder-shown) + .filters-labels {
+.main-section .inputs-section .filters-inputs:not(:placeholder-shown) + .inputs-labels {
   color: var(--green-color-light);
 }
-.main-section .filters-section .filters-labels {
+.main-section .inputs-section .inputs-labels {
   color: var(--green-color-off);
   background: var(--background-color);
-  transform: translate(-13.8rem, -0.5rem);
+  transform: translate(1rem, -0.55rem);
   padding: 0 0.3rem;
   position: absolute;
+  align-self: flex-start;
   user-select: none;
   font-size: 0.8rem;
   transition: 0.3s;
+}
+.main-section .inputs-section .artists-search-list-wrapper {
+  width: 90%;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(235, 235, 235, 0.4784313725);
+  position: absolute;
+  margin-top: 2.7rem;
+  border-radius: 1rem;
+  backdrop-filter: blur(2px);
+  user-select: none;
+  z-index: 1;
+}
+.main-section .inputs-section .artists-search-list-wrapper .artists-search-item {
+  width: 11rem;
+  height: 2rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+.main-section .inputs-section .artists-search-list-wrapper .artists-search-item:first-child {
+  /* i don't use padding-top in wrapper cause wrapper don't hide when there is no items and needs more code for that*/
+  margin-top: 0.5rem;
+}
+.main-section .inputs-section .artists-search-list-wrapper .artists-search-item:last-child {
+  /* i don't use padding-bottom in wrapper cause wrapper don't hide when there is no items and needs more code for that*/
+  margin-bottom: 0.5rem;
+}
+.main-section .inputs-section .artists-search-list-wrapper .artists-search-item .artists-search-item-img {
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  /* for alt */
+  font-size: 0.5rem;
+}
+.main-section .inputs-section .artists-search-list-wrapper .artists-search-item .artists-search-item-name {
+  color: var(--green-blue-color);
+  width: 8.5rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .main-section .actions-section {
