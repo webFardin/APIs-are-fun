@@ -76,14 +76,12 @@ async function artistInfoReq(artistName) {
   return artistReqRes.artists.items;
 }
 
-artistInputField.addEventListener('input', artistInputFieldEvent);
+artistInputField.addEventListener('input', artistSearchInputFieldEvent);
 
-async function artistInputFieldEvent(e) {
-  const inputValue = artistInputField.value;
-  const trimmedInputValue = inputValue.trim();
-  const artistName = encodeURIComponent(trimmedInputValue);
+async function artistSearchInputFieldEvent(e) {
+  const artistName = artistInputFieldStandardize();
 
-  // if input is just free space
+  // if input is just free space, clear search list and don't send request
   if (artistName == '') {
     artistsSearchListWrapper.textContent = '';
     return;
@@ -91,7 +89,17 @@ async function artistInputFieldEvent(e) {
 
   const artistsArr = await artistInfoReq(artistName);
 
+  // if previous Reqs done after search list cleared, do nothing more
+  if (artistInputFieldStandardize() == '') return;
   artistsSearchListShower(artistsArr);
+}
+
+function artistInputFieldStandardize() {
+  const inputValue = artistInputField.value;
+  const trimmedInputValue = inputValue.trim();
+  const standardizedName = encodeURIComponent(trimmedInputValue);
+
+  return standardizedName;
 }
 
 function artistsSearchListShower(artistsArr) {
@@ -119,7 +127,7 @@ function artistsSearchListShower(artistsArr) {
   artistsSearchItemsArr.forEach((artistItem) => {
     artistItem.addEventListener('mousedown', (e)=> {
       artistInputField.value = e.currentTarget.dataset.artistName;
-      artistInputFieldEvent();
+      artistSearchInputFieldEvent();
     });
   });
 }
