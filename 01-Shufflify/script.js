@@ -117,7 +117,7 @@ function artistsSearchListShower(artistsArr) {
 
   artistsArr.forEach((artist) => {
     // condition is for when image is not available
-    const artistImg = artist.images.length ? artist.images[2].url : 'https://cdn.iconscout.com/icon/premium/png-256-thumb/music-artist-5701091-4778392.png';
+    const artistImg = artist.images.length ? artist.images[2].url : 'https://www.svgrepo.com/show/227922/musician.svg';
     const artistName = artist.name || 'unknown';
 
     artistsSearchListWrapper.innerHTML += `
