@@ -78,6 +78,8 @@ async function artistInfoReq(artistName) {
 
 artistInputField.addEventListener('input', artistSearchInputFieldEvent);
 
+// this variable is for checking that just last artistInfoReq to be apply
+let artistInfoReqNum= 0;
 async function artistSearchInputFieldEvent(e) {
   const artistName = artistInputFieldStandardize();
 
@@ -87,10 +89,18 @@ async function artistSearchInputFieldEvent(e) {
     return;
   };
 
+  // increase req number and save it locally to check later
+  artistInfoReqNum++;
+  const localArtistInfoReqNum = artistInfoReqNum;
+
   const artistsArr = await artistInfoReq(artistName);
+
+  // if some reqs sent after this req, do nothing
+  if (localArtistInfoReqNum != artistInfoReqNum) return;
 
   // if previous Reqs done after search list cleared, do nothing more
   if (artistInputFieldStandardize() == '') return;
+
   artistsSearchListShower(artistsArr);
 }
 
