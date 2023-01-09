@@ -4,6 +4,7 @@
 
 :root {
   --background-color: #ffffff;
+  --background-blur: #ebebeb7a;
   --green-color-medium: #1ed760;
   --green-color-light: #1ed75fd5;
   --green-color-dark: #1bc556d0;
@@ -130,7 +131,7 @@ body {
       justify-content: center;
       align-items: center;
       gap: 0.5rem;
-      background: #ebebeb7a;
+      background: var(--background-blur);
       position: absolute;
       margin-top: 2.7rem;
       border-radius: 1rem;
@@ -186,19 +187,6 @@ body {
     align-items: center;
     position: relative;
     margin-top: 1.5rem;
-
-    .favorites-button {
-      fill: var(--green-color-dark);
-      position: absolute;
-      transform: translate(-5rem, 0.2rem);
-      cursor: pointer;
-      display: none;
-
-      .favorites-icon {
-        width: 2rem;
-        display: flex;
-      }
-    }
 
     .shuffle-button {
       width: 4rem;
