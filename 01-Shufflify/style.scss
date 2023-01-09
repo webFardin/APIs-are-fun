@@ -77,8 +77,9 @@ body {
       & ~ .clear-input-icon {
         color: var(--green-color-alpha);
         position: absolute;
-        width: 1.1rem;
-        transform: translate(6.3rem, 0.7rem);
+        width: 1.4rem;
+        height: 100%;
+        transform: translateX(6.3rem);
         display: none;
         cursor: pointer;
       }
