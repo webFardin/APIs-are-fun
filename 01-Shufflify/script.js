@@ -206,6 +206,11 @@ function animateGuitarButton(cancel) {
 }
 
 shuffleButton.addEventListener('click', getItemsReq);
+yearsInputField.addEventListener('keydown', (e) => {
+  if (e.key == 'Enter') {
+    getItemsReq();
+  }
+});
 
 let getItemsReqIsProcessing = false;
 async function getItemsReq() {
@@ -240,6 +245,9 @@ async function getItemsReq() {
 
   const randomSelectedItem = getItemsReqRes.tracks.items[randomNumber];
 
+  console.log(getItemsReqRes);
+  console.log(randomSelectedItem);
+
   const trackName = randomSelectedItem.name;
   const trackDemo = randomSelectedItem.preview_url;
   const trackLink = randomSelectedItem.external_urls.spotify;
@@ -254,8 +262,6 @@ async function getItemsReq() {
   animateGuitarButton('cancel');
   getItemsReqIsProcessing = false;
 
-  console.log(getItemsReqRes);
-  console.log(randomSelectedItem);
 
   return randomSelectedItem;
 }
