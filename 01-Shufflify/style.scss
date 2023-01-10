@@ -1,5 +1,5 @@
-// cares about pacifico font
-@import "https://fonts.googleapis.com/css?family=Pacifico";
+@use "sass:math";
+
 @import "https://fonts.googleapis.com/css?family=Quicksand";
 
 :root {
@@ -36,6 +36,39 @@ body {
   min-height: 100vh;
   font-family: "Quicksand";
   font-weight: bold;
+
+  .getTokenReqAnimWrapper {
+    position: absolute;
+    width: 100vw;
+    height: 100%;
+    backdrop-filter: blur(3px);
+    display: grid;
+    place-items: center;
+
+    .getTokenReqAnimBox {
+      $width: 5rem;
+      background: var(--green-color-off);
+      width: $width;
+      height: 0.8rem;
+      border-radius: 1rem;
+      overflow: hidden;
+
+      .getTokenReqAnim {
+        width: math.div($width, 2);
+        height: 100%;
+        background: var(--green-color-medium);
+        border-radius: 1rem;
+        transform: translateX(-1rem);
+        animation: getTokenReqAnimation 1s ease-in-out infinite alternate;
+      }
+    }
+  }
+}
+
+@keyframes getTokenReqAnimation {
+  100% {
+    transform: translateX(4rem);
+  }
 }
 
 .main-section {

@@ -1,4 +1,3 @@
-@import "https://fonts.googleapis.com/css?family=Pacifico";
 @import "https://fonts.googleapis.com/css?family=Quicksand";
 :root {
   --background-color: #ffffff;
@@ -35,7 +34,35 @@ body {
   font-family: "Quicksand";
   font-weight: bold;
 }
+body .getTokenReqAnimWrapper {
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+  backdrop-filter: blur(3px);
+  display: grid;
+  place-items: center;
+}
+body .getTokenReqAnimWrapper .getTokenReqAnimBox {
+  background: var(--green-color-off);
+  width: 5rem;
+  height: 0.8rem;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+body .getTokenReqAnimWrapper .getTokenReqAnimBox .getTokenReqAnim {
+  width: 2.5rem;
+  height: 100%;
+  background: var(--green-color-medium);
+  border-radius: 1rem;
+  transform: translateX(-1rem);
+  animation: getTokenReqAnimation 1s ease-in-out infinite alternate;
+}
 
+@keyframes getTokenReqAnimation {
+  100% {
+    transform: translateX(4rem);
+  }
+}
 .main-section .inputs-section {
   display: flex;
   flex-direction: column;

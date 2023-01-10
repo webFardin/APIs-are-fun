@@ -49,6 +49,8 @@ localStorage.getItem('token') ? token = localStorage.getItem('token') :
 getTokenReq();
 
 async function getTokenReq() {
+  getTokenReqAnimation();
+
   const tokenReqObj = await fetch('https://accounts.spotify.com/api/token',
       getTokenReqOptions);
 
@@ -58,10 +60,32 @@ async function getTokenReq() {
 
   localStorage.setItem('token', token);
 
+  getTokenReqAnimation('cancel');
+
   // remove this later
   console.log('token got');
 
   return token;
+}
+
+function getTokenReqAnimation(cancel) {
+  if (cancel) {
+    document.querySelector('.getTokenReqAnimWrapper').remove();
+    return;
+  }
+
+  const getTokenReqAnimWrapper = document.createElement('div');
+  getTokenReqAnimWrapper.classList.add('getTokenReqAnimWrapper');
+
+  const getTokenReqAnimBox = document.createElement('div');
+  getTokenReqAnimBox.classList.add('getTokenReqAnimBox');
+
+  const getTokenReqAnim = document.createElement('div');
+  getTokenReqAnim.classList.add('getTokenReqAnim');
+
+  document.body.append(getTokenReqAnimWrapper);
+  getTokenReqAnimWrapper.append(getTokenReqAnimBox);
+  getTokenReqAnimBox.append(getTokenReqAnim);
 }
 
 // getTokenReq()
@@ -168,7 +192,7 @@ function animateGuitarButton(cancel) {
     item.animate(
         [
           {opacity: 0.3},
-          {opacity: 1, offset: 0.6},
+          {opacity: 1, offset: 0.8},
           {opacity: 1},
         ], {
           duration: 1500,
@@ -227,7 +251,7 @@ async function getItemsReq() {
   const trackArtists = randomSelectedItem.artists[0].name;
   const trackArtistsLinks = randomSelectedItem.artists[0].external_urls.spotify;
 
-  animateGuitarButton(true);
+  animateGuitarButton('cancel');
   getItemsReqIsProcessing = false;
 
   console.log(getItemsReqRes);
@@ -292,7 +316,7 @@ function getItemsReqQueryMaker() {
   let randomStr = '';
   // randomStr when artist field is filled, doesn't make good responses
   if (artist == '') {
-    randomStr = randomStrGenerator(3) + '%20';
+    randomStr = randomStrGenerator(1) + '%20';
   }
 
   const query = `q=${randomStr}${artist}${genre}${years}`;
@@ -303,7 +327,7 @@ function getItemsReqQueryMaker() {
 function randomStrGenerator(length) {
   let randomString = '';
 
-  const characters = 'abcdefghijklmnopqrstuvwxyz';
+  const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
   for ( let i = 0; i < length; i++ ) {
     const randomIndex = characters.length * Math.random();
     randomString += characters.charAt(Math.floor(randomIndex));
