@@ -30,8 +30,8 @@ clearInputIcons.forEach((icon) => icon.addEventListener('mousedown', (e) => {
 }));
 
 // x-www-form-urlencoded type of request body: need URL();
-const encodedBody = new URLSearchParams();
-encodedBody.append('grant_type', 'client_credentials');
+const encodedGetTokenReqBody = new URLSearchParams();
+encodedGetTokenReqBody.append('grant_type', 'client_credentials');
 
 const getTokenReqOptions = {
   method: 'POST',
@@ -41,10 +41,13 @@ const getTokenReqOptions = {
     // eslint-disable-next-line max-len
     'Basic ZDQ2OGY4Yjg5MDMwNDJlNThlYmEyNjY5YTQ2MDFhZWQ6OTJjMmJlZmJhMTNjNDZjYjk0YTFiN2RmOGEzMjFhMDQ=',
   },
-  body: encodedBody,
+  body: encodedGetTokenReqBody,
 };
 
 let token;
+localStorage.getItem('token') ? token = localStorage.getItem('token') :
+getTokenReq();
+
 async function getTokenReq() {
   const tokenReqObj = await fetch('https://accounts.spotify.com/api/token',
       getTokenReqOptions);
@@ -53,18 +56,13 @@ async function getTokenReq() {
 
   token = 'Bearer ' + tokenReqRes.access_token;
 
-  // when token expired
-  setTimeout(() => {
-    token = null;
-    getTokenReq();
-  }, 3500000);
+  localStorage.setItem('token', token);
 
   // remove this later
   console.log('token got');
 
   return token;
 }
-getTokenReq();
 
 // getTokenReq()
 // // customize catch later...
@@ -77,6 +75,13 @@ async function artistInfoReq(artistName) {
       Authorization: token,
     },
   });
+
+  // if token expired
+  if (artistReqObj.status == 401) {
+    await getTokenReq();
+    artistInputField.dispatchEvent(new Event('input'));
+    return;
+  }
 
   const artistReqRes = await artistReqObj.json();
 
@@ -196,13 +201,21 @@ async function getItemsReq() {
     },
   });
 
+  // if token expired
+  if (getItemsReqObj.status == 401) {
+    await getTokenReq();
+    getItemsReqIsProcessing = false;
+    getItemsReq();
+    return;
+  }
+
   const getItemsReqRes = await getItemsReqObj.json();
 
   const getItemsReqResLength = getItemsReqRes.tracks.items.length;
   const randomNumber = Math.floor(Math.random() * getItemsReqResLength);
 
   const randomSelectedItem = getItemsReqRes.tracks.items[randomNumber];
-  
+
   const trackName = randomSelectedItem.name;
   const trackDemo = randomSelectedItem.preview_url;
   const trackLink = randomSelectedItem.external_urls.spotify;
@@ -218,6 +231,7 @@ async function getItemsReq() {
   getItemsReqIsProcessing = false;
 
   console.log(getItemsReqRes);
+  console.log(randomSelectedItem);
 
   return randomSelectedItem;
 }
@@ -228,6 +242,13 @@ async function randomOffsetNumGenReq(query) {
       Authorization: token,
     },
   });
+
+  // if token expired
+  if (totalItemsNumReqObj.status == 401) {
+    await getTokenReq();
+    randomOffsetNumGenReq(query);
+    return;
+  }
 
   const totalItemsNumReqRes = await totalItemsNumReqObj.json();
 
