@@ -131,6 +131,9 @@ async function artistSearchInputFieldEvent(e) {
 
   const artistsArr = await artistInfoReq(artistName);
 
+  // when token expired in artistInfoReq()
+  if (artistsArr == undefined) return;
+
   // if some reqs sent after this req, do nothing
   if (localArtistInfoReqNum != artistInfoReqNum) return;
 
@@ -224,6 +227,9 @@ async function getItemsReq() {
 
   const OffsetNum = await randomOffsetNumGenReq(query);
 
+  // when token expired in randomOffserNumGenReq()
+  if (OffsetNum == undefined) return;
+
   const getItemsReqObj = await fetch(`https://api.spotify.com/v1/search?${query}&type=track&include_external=audio&limit=50&offset=${OffsetNum}`, {
     headers: {
       Authorization: token,
@@ -233,6 +239,7 @@ async function getItemsReq() {
   // if token expired
   if (getItemsReqObj.status == 401) {
     await getTokenReq();
+    animateGuitarButton('cancel');
     getItemsReqIsProcessing = false;
     getItemsReq();
     return;
@@ -276,7 +283,9 @@ async function randomOffsetNumGenReq(query) {
   // if token expired
   if (totalItemsNumReqObj.status == 401) {
     await getTokenReq();
-    randomOffsetNumGenReq(query);
+    animateGuitarButton('cancel');
+    getItemsReqIsProcessing = false;
+    getItemsReq();
     return;
   }
 
