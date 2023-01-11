@@ -237,24 +237,25 @@ body {
 
 .main-section {
   .result-panel {
-    // display: none;
+    display: none;
     position: absolute;
     width: 18rem;
     height: max-content;
     background: var(--background-blur);
     backdrop-filter: blur(18px);
     border-radius: 2rem;
-    display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     gap: 1rem;
     padding: 1rem 0;
     overflow: hidden;
+    user-select: none;
 
     .result-panel-track-img {
       border-radius: 1rem;
       width: 10rem;
+      height: 10rem;
     }
 
     .result-panel-info-section {

@@ -18,6 +18,16 @@ const guitarAnimationItems =
 
 const shuffleButton = document.getElementById('shuffleButton');
 
+const resultPanel = document.getElementById('resultPanel');
+const trackImg = document.getElementById('trackImg');
+const trackNameElem = document.getElementById('trackNameElem');
+const trackArtistName = document.getElementById('trackArtistName');
+const closePanelBtn = document.getElementById('closePanelBtn');
+const playPanelBtn = document.getElementById('playPanelBtn');
+const playingPanelBtn = document.getElementById('playingPanelBtn');
+const spotifyPanelBtn = document.getElementById('spotifyPanelBtn');
+const audioElem = document.getElementById('audioElem');
+
 clearInputIcons.forEach((icon) => icon.addEventListener('mousedown', (e) => {
   e.preventDefault();
 
@@ -255,16 +265,7 @@ async function getItemsReq() {
   console.log(getItemsReqRes);
   console.log(randomSelectedItem);
 
-  const trackName = randomSelectedItem.name;
-  const trackDemo = randomSelectedItem.preview_url;
-  const trackLink = randomSelectedItem.external_urls.spotify;
-  const trackAlbumName = randomSelectedItem.album.name;
-  const trackAlbumLink = randomSelectedItem.album.external_urls.spotify;
-  // get cover based on screen resolution
-  // const trackCover = randomSelectedItem.album[2].url;
-  // iterate over artists
-  const trackArtists = randomSelectedItem.artists[0].name;
-  const trackArtistsLinks = randomSelectedItem.artists[0].external_urls.spotify;
+  trackPanelShower(randomSelectedItem);
 
   animateGuitarButton('cancel');
   getItemsReqIsProcessing = false;
@@ -313,7 +314,7 @@ function standardizeInputFields() {
   // years input field
   const trimmedYearsInputField = yearsInputField.value.trim();
   const standardizedYearsInputField =
-    trimmedYearsInputField.replaceAll(' ', '-');
+    trimmedYearsInputField.replaceAll(' ', '');
 
   return [standardizedArtistInputField,
     standardizedGenreInputField,
@@ -350,3 +351,39 @@ function randomStrGenerator(length) {
 
   return randomString;
 }
+
+function trackPanelShower(track) {
+  const trackName = track.name;
+  const trackDemo = track.preview_url;
+  const trackLink = track.external_urls.spotify;
+  const trackCover = track.album.images.length ? track.album.images[0].url : 'https://www.svgrepo.com/show/480240/music-file-1.svg';
+  const trackArtists = track.artists.map((artist) => artist.name).join(', ');
+
+  resultPanel.style.display = 'flex';
+  trackNameElem.textContent = trackName;
+  trackImg.src = '';
+  trackImg.src = trackCover;
+  trackArtistName.textContent = trackArtists;
+  spotifyPanelBtn.href = trackLink;
+  audioElem.src = trackDemo;
+}
+
+playPanelBtn.addEventListener('click', (e) => {
+  playPanelBtn.style.display = 'none';
+  playingPanelBtn.style.display = 'initial';
+  audioElem.play();
+});
+
+playingPanelBtn.addEventListener('click', audioPaused);
+function audioPaused() {
+  playingPanelBtn.style.display = '';
+  playPanelBtn.style.display = '';
+  audioElem.pause();
+}
+
+audioElem.addEventListener('pause', audioPaused);
+
+closePanelBtn.addEventListener('click', (e) => {
+  resultPanel.style.display = '';
+  audioPaused();
+});
