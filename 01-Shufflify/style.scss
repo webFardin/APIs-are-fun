@@ -32,8 +32,7 @@ html {
 body {
   background: var(--background-color);
   display: grid;
-  place-content: center;
-  min-height: 100vh;
+  place-items: center;
   font-family: "Quicksand";
   font-weight: bold;
 
@@ -44,6 +43,7 @@ body {
     backdrop-filter: blur(3px);
     display: grid;
     place-items: center;
+    z-index: 1000;
 
     .getTokenReqAnimBox {
       $width: 5rem;
@@ -72,6 +72,13 @@ body {
 }
 
 .main-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+
   .inputs-section {
     display: flex;
     flex-direction: column;
@@ -219,12 +226,95 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
     margin-top: 1.5rem;
 
     .shuffle-button {
       width: 4rem;
       cursor: pointer;
+    }
+  }
+}
+
+.main-section {
+  .result-panel {
+    // display: none;
+    position: absolute;
+    width: 18rem;
+    height: max-content;
+    background: var(--background-blur);
+    backdrop-filter: blur(18px);
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    overflow: hidden;
+
+    .result-panel-track-img {
+      border-radius: 1rem;
+      width: 10rem;
+    }
+
+    .result-panel-info-section {
+      width: 100%;
+      height: max-content;
+      // background: #ff00002f;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0.3rem;
+
+      .result-panel-info-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.3rem;
+
+        .result-panel-info-icon {
+          width: 2rem;
+          fill: var(--green-blue-color);
+        }
+
+        .result-panel-info-name {
+          width: 8rem;
+          height: max-content;
+          text-align: center;
+          color: var(--green-blue-color);
+        }
+      }
+    }
+
+    .result-panel-actions-section {
+      width: 100%;
+      height: 3rem;
+      // background: #0000ff2f;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+
+      .result-panel-actions-button {
+        width: 2.5rem;
+
+        .result-panel-close-btn-icon {
+          fill: var(--green-color-alpha);
+        }
+
+        .result-panel-play-btn-icon {
+          fill: var(--green-color-light);
+        }
+
+        .result-panel-playing-btn-icon {
+          display: none;
+          fill: var(--green-color-medium);
+        }
+
+        .result-panel-spotify-icon {
+          fill: var(--green-color-medium);
+        }
+      }
     }
   }
 }
