@@ -58,7 +58,10 @@ let token;
 localStorage.getItem('token') ? token = localStorage.getItem('token') :
 getTokenReq();
 
+let getTokenReqIsPrccessing = false;
 async function getTokenReq() {
+  if (getTokenReqIsPrccessing) return;
+  getTokenReqIsPrccessing = true;
   getTokenReqAnimation();
 
   const tokenReqObj = await fetch('https://accounts.spotify.com/api/token',
@@ -71,6 +74,7 @@ async function getTokenReq() {
   localStorage.setItem('token', token);
 
   getTokenReqAnimation('cancel');
+  getTokenReqIsPrccessing = true;
 
   // remove this later
   console.log('token got');
@@ -168,9 +172,11 @@ function artistsSearchListShower(artistsArr) {
     // condition is for when image is not available
     const artistImg = artist.images.length ? artist.images[2].url : 'https://www.svgrepo.com/show/227922/musician.svg';
     const artistName = artist.name || 'unknown';
+    const artistGenres = artist.genres.map((genre) => genre).join(', ');
 
     artistsSearchListWrapper.innerHTML += `
-    <div class="artists-search-item" data-artist-name="${artistName}">
+    <div class="artists-search-item" data-artist-name="${artistName}"
+    data-artist-genres="${artistGenres}">
               <img
                 src="${artistImg}"
                 alt="artist image"
@@ -186,6 +192,7 @@ function artistsSearchListShower(artistsArr) {
   artistsSearchItemsArr.forEach((artistItem) => {
     artistItem.addEventListener('mousedown', (e)=> {
       artistInputField.value = e.currentTarget.dataset.artistName;
+      genreInputField.value = e.currentTarget.dataset.artistGenres;
       artistSearchInputFieldEvent();
     });
   });
@@ -237,7 +244,7 @@ async function getItemsReq() {
 
   const OffsetNum = await randomOffsetNumGenReq(query);
 
-  // when token expired in randomOffserNumGenReq()
+  // when token expired or result is empty in randomOffserNumGenReq()
   if (OffsetNum == undefined) return;
 
   const getItemsReqObj = await fetch(`https://api.spotify.com/v1/search?${query}&type=track&include_external=audio&limit=50&offset=${OffsetNum}`, {
@@ -254,6 +261,8 @@ async function getItemsReq() {
     getItemsReq();
     return;
   }
+
+  console.log(getItemsReqObj);
 
   const getItemsReqRes = await getItemsReqObj.json();
 
@@ -293,6 +302,19 @@ async function randomOffsetNumGenReq(query) {
   const totalItemsNumReqRes = await totalItemsNumReqObj.json();
 
   const totalItemsNum = totalItemsNumReqRes.tracks.total;
+
+  if (totalItemsNum == 0) {
+    const [artist, genre] = standardizeInputFields();
+    getItemsReqIsProcessing = false;
+    animateGuitarButton('cancel');
+    if (artist && genre) {
+      genreInputField.value = '';
+      getItemsReq();
+      return;
+    }
+    noResultErrShower();
+    return;
+  }
 
   // offset > 950 lead to error
   const randomOffsetNum = totalItemsNum >= 950 ?
@@ -343,7 +365,7 @@ function getItemsReqQueryMaker() {
 function randomStrGenerator(length) {
   let randomString = '';
 
-  const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
   for ( let i = 0; i < length; i++ ) {
     const randomIndex = characters.length * Math.random();
     randomString += characters.charAt(Math.floor(randomIndex));
@@ -356,7 +378,24 @@ function trackPanelShower(track) {
   const trackName = track.name;
   const trackDemo = track.preview_url;
   const trackLink = track.external_urls.spotify;
-  const trackCover = track.album.images.length ? track.album.images[0].url : 'https://www.svgrepo.com/show/480240/music-file-1.svg';
+  let trackCoverQuality;
+  switch (true) {
+    case window.innerWidth < 128:
+      trackCoverQuality = 2;
+      break;
+
+    case window.innerWidth < 600:
+      trackCoverQuality = 1;
+      break;
+
+    case window.innerWidth > 600:
+      trackCoverQuality = 0;
+      break;
+
+    default:
+      break;
+  }
+  const trackCover = track.album.images.length ? track.album.images[trackCoverQuality].url : 'https://www.svgrepo.com/show/480240/music-file-1.svg';
   const trackArtists = track.artists.map((artist) => artist.name).join(', ');
 
   resultPanel.style.display = 'flex';
@@ -386,4 +425,18 @@ audioElem.addEventListener('pause', audioPaused);
 closePanelBtn.addEventListener('click', (e) => {
   resultPanel.style.display = '';
   audioPaused();
+  audioElem.src = '';
 });
+
+function noResultErrShower() {
+  const errorElemWrapper = document.createElement('div');
+  errorElemWrapper.classList.add('error-elem-wrapper');
+  errorElemWrapper.textContent = `I didn\'t find anything!
+  \nI think you should change filters!`;
+
+  document.body.append(errorElemWrapper);
+
+  setTimeout(() => {
+    document.querySelector('.error-elem-wrapper').remove();
+  }, 2000);
+}

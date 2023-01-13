@@ -57,6 +57,19 @@ body .getTokenReqAnimWrapper .getTokenReqAnimBox .getTokenReqAnim {
   transform: translateX(-1rem);
   animation: getTokenReqAnimation 1s ease-in-out infinite alternate;
 }
+body .error-elem-wrapper {
+  position: absolute;
+  width: 11rem;
+  height: 5rem;
+  border-radius: 1.5rem;
+  background: rgba(240, 40, 100, 0.5019607843);
+  backdrop-filter: blur(3px);
+  color: white;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 @keyframes getTokenReqAnimation {
   100% {
@@ -260,6 +273,7 @@ body .getTokenReqAnimWrapper .getTokenReqAnimBox .getTokenReqAnim {
 }
 .main-section .result-panel .result-panel-actions-section .result-panel-actions-button {
   width: 2.5rem;
+  cursor: pointer;
 }
 .main-section .result-panel .result-panel-actions-section .result-panel-actions-button .result-panel-close-btn-icon {
   fill: var(--green-color-alpha);

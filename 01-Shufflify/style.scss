@@ -63,6 +63,20 @@ body {
       }
     }
   }
+
+  .error-elem-wrapper {
+    position: absolute;
+    width: 11rem;
+    height: 5rem;
+    border-radius: 1.5rem;
+    background: #f0286480;
+    backdrop-filter: blur(3px);
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 @keyframes getTokenReqAnimation {
@@ -298,6 +312,7 @@ body {
 
       .result-panel-actions-button {
         width: 2.5rem;
+        cursor: pointer;
 
         .result-panel-close-btn-icon {
           fill: var(--green-color-alpha);
