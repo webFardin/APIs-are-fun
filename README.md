@@ -15,4 +15,6 @@ https://t.me/webFardin
 
 An interesting app that randomly return a music from spotify. You can set filters like artist, genre or year!
 
+Live Version: http://shufflify.atwebpages.com/
+
 ![Shufflify](https://i.postimg.cc/TYMGNjKG/20230114-195143.gif)
