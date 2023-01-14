@@ -1,4 +1,5 @@
 @import "https://fonts.googleapis.com/css?family=Quicksand";
+@import "https://fonts.googleapis.com/css?family=Source+Code+Pro";
 :root {
   --background-color: #ffffff;
   --background-blur: #ebebeb7a;
@@ -76,6 +77,22 @@ body .error-elem-wrapper {
     transform: translateX(4rem);
   }
 }
+.shufflify-logo {
+  font-family: "Source Code Pro";
+  font-size: 2rem;
+  position: absolute;
+  color: var(--green-color-light);
+  transform: translateY(-11rem);
+  text-decoration: var(--background-color) line-through;
+}
+.shufflify-logo .logo-desc {
+  font-size: 0.5rem;
+  position: absolute;
+  transform: translate(-8.6rem, 2rem);
+  width: max-content;
+  color: var(--green-color-alpha);
+}
+
 .main-section {
   display: flex;
   flex-direction: column;
