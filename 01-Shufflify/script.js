@@ -74,7 +74,7 @@ async function getTokenReq() {
   localStorage.setItem('token', token);
 
   getTokenReqAnimation('cancel');
-  getTokenReqIsPrccessing = true;
+  getTokenReqIsPrccessing = false;
 
   // remove this later
   console.log('token got');
@@ -108,6 +108,7 @@ function getTokenReqAnimation(cancel) {
 // ;
 
 async function artistInfoReq(artistName) {
+  if (getTokenReqIsPrccessing) return;
   const artistReqObj = await fetch(`https://api.spotify.com/v1/search?q=${artistName}&type=artist&limit=3`, {
     headers: {
       Authorization: token,

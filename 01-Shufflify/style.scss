@@ -334,3 +334,9 @@ body {
     }
   }
 }
+
+@media all and (min-width: 900px) {
+  html {
+    font-size: 2vw;
+  }
+}

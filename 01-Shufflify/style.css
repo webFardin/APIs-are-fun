@@ -289,4 +289,10 @@ body .error-elem-wrapper {
   fill: var(--green-color-medium);
 }
 
+@media all and (min-width: 900px) {
+  html {
+    font-size: 2vw;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */
