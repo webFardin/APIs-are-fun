@@ -55,13 +55,13 @@ const getTokenReqOptions = {
 };
 
 let token;
+let getTokenReqIsProcessing = false;
 localStorage.getItem('token') ? token = localStorage.getItem('token') :
 getTokenReq();
 
-let getTokenReqIsPrccessing = false;
 async function getTokenReq() {
-  if (getTokenReqIsPrccessing) return;
-  getTokenReqIsPrccessing = true;
+  if (getTokenReqIsProcessing) return;
+  getTokenReqIsProcessing = true;
   getTokenReqAnimation();
 
   const tokenReqObj = await fetch('https://accounts.spotify.com/api/token',
@@ -74,7 +74,7 @@ async function getTokenReq() {
   localStorage.setItem('token', token);
 
   getTokenReqAnimation('cancel');
-  getTokenReqIsPrccessing = false;
+  getTokenReqIsProcessing = false;
 
   return token;
 }
@@ -100,7 +100,7 @@ function getTokenReqAnimation(cancel) {
 }
 
 async function artistInfoReq(artistName) {
-  if (getTokenReqIsPrccessing) return;
+  if (getTokenReqIsProcessing) return;
   const artistReqObj = await fetch(`https://api.spotify.com/v1/search?q=${artistName}&type=artist&limit=3`, {
     headers: {
       Authorization: token,
