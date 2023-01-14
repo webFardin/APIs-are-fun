@@ -38,6 +38,7 @@ body .getTokenReqAnimWrapper {
   position: absolute;
   width: 100vw;
   height: 100%;
+  -webkit-backdrop-filter: blur(3px);
   backdrop-filter: blur(3px);
   display: grid;
   place-items: center;
@@ -64,6 +65,7 @@ body .error-elem-wrapper {
   height: 5rem;
   border-radius: 1.5rem;
   background: rgba(240, 40, 100, 0.5019607843);
+  -webkit-backdrop-filter: blur(3px);
   backdrop-filter: blur(3px);
   color: white;
   text-align: center;
@@ -130,6 +132,7 @@ body .error-elem-wrapper {
 }
 .main-section .inputs-section .filters-inputs::placeholder {
   font-size: 1rem;
+  -webkit-user-select: none;
   user-select: none;
   color: var(--green-color-alpha);
   transition: 0.3s;
@@ -171,6 +174,7 @@ body .error-elem-wrapper {
   padding: 0 0.3rem;
   position: absolute;
   align-self: flex-start;
+  -webkit-user-select: none;
   user-select: none;
   font-size: 0.8rem;
   transition: 0.3s;
@@ -186,7 +190,9 @@ body .error-elem-wrapper {
   position: absolute;
   margin-top: 2.7rem;
   border-radius: 1rem;
+  -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
+  -webkit-user-select: none;
   user-select: none;
   z-index: 1;
 }
@@ -241,6 +247,7 @@ body .error-elem-wrapper {
   width: 18rem;
   height: max-content;
   background: var(--background-blur);
+  -webkit-backdrop-filter: blur(18px);
   backdrop-filter: blur(18px);
   border-radius: 2rem;
   flex-direction: column;
@@ -249,6 +256,7 @@ body .error-elem-wrapper {
   gap: 1rem;
   padding: 1rem 0;
   overflow: hidden;
+  -webkit-user-select: none;
   user-select: none;
 }
 .main-section .result-panel .result-panel-track-img {
