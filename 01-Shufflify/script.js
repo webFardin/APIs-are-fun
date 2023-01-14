@@ -76,9 +76,6 @@ async function getTokenReq() {
   getTokenReqAnimation('cancel');
   getTokenReqIsPrccessing = false;
 
-  // remove this later
-  console.log('token got');
-
   return token;
 }
 
@@ -101,11 +98,6 @@ function getTokenReqAnimation(cancel) {
   getTokenReqAnimWrapper.append(getTokenReqAnimBox);
   getTokenReqAnimBox.append(getTokenReqAnim);
 }
-
-// getTokenReq()
-// // customize catch later...
-//     .catch((error) => console.log('error in getting token', error));
-// ;
 
 async function artistInfoReq(artistName) {
   if (getTokenReqIsPrccessing) return;
@@ -263,17 +255,12 @@ async function getItemsReq() {
     return;
   }
 
-  console.log(getItemsReqObj);
-
   const getItemsReqRes = await getItemsReqObj.json();
 
   const getItemsReqResLength = getItemsReqRes.tracks.items.length;
   const randomNumber = Math.floor(Math.random() * getItemsReqResLength);
 
   const randomSelectedItem = getItemsReqRes.tracks.items[randomNumber];
-
-  console.log(getItemsReqRes);
-  console.log(randomSelectedItem);
 
   trackPanelShower(randomSelectedItem);
 
