@@ -289,7 +289,7 @@ body .error-elem-wrapper {
   fill: var(--green-color-medium);
 }
 
-@media all and (min-width: 900px) {
+@media all and (min-width: 992px) {
   html {
     font-size: 2vw;
   }
