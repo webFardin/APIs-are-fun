@@ -18,6 +18,10 @@ const guitarAnimationItems =
 
 const shuffleButton = document.getElementById('shuffleButton');
 
+const infoPanel = document.getElementById('infoPanel');
+const infoButton = document.getElementById('infoButton');
+const closeInfoPanelBtn = document.getElementById('closeInfoPanelBtn');
+
 const resultPanel = document.getElementById('resultPanel');
 const trackImg = document.getElementById('trackImg');
 const trackNameElem = document.getElementById('trackNameElem');
@@ -428,3 +432,11 @@ function noResultErrShower() {
     document.querySelector('.error-elem-wrapper').remove();
   }, 2000);
 }
+
+infoButton.addEventListener('click', (e) => {
+  infoPanel.style.display = 'flex';
+});
+
+closeInfoPanelBtn.addEventListener('click', (e) => {
+  infoPanel.style.display = '';
+});

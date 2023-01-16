@@ -56,7 +56,7 @@ body .getTokenReqAnimWrapper .getTokenReqAnimBox .getTokenReqAnim {
   height: 100%;
   background: var(--green-color-medium);
   border-radius: 1rem;
-  transform: translateX(-1rem);
+  transform: translateX(-1.25rem);
   animation: getTokenReqAnimation 1s ease-in-out infinite alternate;
 }
 body .error-elem-wrapper {
@@ -76,7 +76,7 @@ body .error-elem-wrapper {
 
 @keyframes getTokenReqAnimation {
   100% {
-    transform: translateX(4rem);
+    transform: translateX(3.75rem);
   }
 }
 .shufflify-logo {
@@ -86,6 +86,7 @@ body .error-elem-wrapper {
   color: var(--green-color-light);
   transform: translateY(-11rem);
   text-decoration: var(--background-color) line-through;
+  user-select: none;
 }
 .shufflify-logo .logo-desc {
   font-size: 0.5rem;
@@ -95,7 +96,7 @@ body .error-elem-wrapper {
   color: var(--green-color-alpha);
 }
 
-.main-section {
+.main {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -103,20 +104,20 @@ body .error-elem-wrapper {
   width: 100vw;
   height: 100vh;
 }
-.main-section .inputs-section {
+.main .inputs-section {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 1rem;
 }
-.main-section .inputs-section .input-wrapper {
+.main .inputs-section .input-wrapper {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.main-section .inputs-section .filters-inputs {
+.main .inputs-section .filters-inputs {
   background: transparent;
   outline: none;
   color: var(--green-color-medium);
@@ -130,14 +131,14 @@ body .error-elem-wrapper {
   font-weight: bold;
   transition: 0.3s;
 }
-.main-section .inputs-section .filters-inputs::placeholder {
+.main .inputs-section .filters-inputs::placeholder {
   font-size: 1rem;
   -webkit-user-select: none;
   user-select: none;
   color: var(--green-color-alpha);
   transition: 0.3s;
 }
-.main-section .inputs-section .filters-inputs ~ .clear-input-icon {
+.main .inputs-section .filters-inputs ~ .clear-input-icon {
   color: var(--green-color-alpha);
   position: absolute;
   width: 1.4rem;
@@ -146,28 +147,28 @@ body .error-elem-wrapper {
   display: none;
   cursor: pointer;
 }
-.main-section .inputs-section .filters-inputs:focus {
+.main .inputs-section .filters-inputs:focus {
   border: 0.1rem solid var(--green-color-light) !important;
 }
-.main-section .inputs-section .filters-inputs:focus + .inputs-labels {
+.main .inputs-section .filters-inputs:focus + .inputs-labels {
   color: var(--green-color-light) !important;
 }
-.main-section .inputs-section .filters-inputs:first-child:focus ~ .artists-search-list-wrapper {
+.main .inputs-section .filters-inputs:first-child:focus ~ .artists-search-list-wrapper {
   display: flex;
 }
-.main-section .inputs-section .filters-inputs:placeholder-shown {
+.main .inputs-section .filters-inputs:placeholder-shown {
   border: 0.1rem solid var(--green-color-off);
 }
-.main-section .inputs-section .filters-inputs:not(:placeholder-shown) {
+.main .inputs-section .filters-inputs:not(:placeholder-shown) {
   border: 0.1rem solid var(--green-color-light);
 }
-.main-section .inputs-section .filters-inputs:not(:placeholder-shown):focus ~ .clear-input-icon {
+.main .inputs-section .filters-inputs:not(:placeholder-shown):focus ~ .clear-input-icon {
   display: initial;
 }
-.main-section .inputs-section .filters-inputs:not(:placeholder-shown) + .inputs-labels {
+.main .inputs-section .filters-inputs:not(:placeholder-shown) + .inputs-labels {
   color: var(--green-color-light);
 }
-.main-section .inputs-section .inputs-labels {
+.main .inputs-section .inputs-labels {
   color: var(--green-color-off);
   background: var(--background-color);
   transform: translate(1rem, -0.55rem);
@@ -179,7 +180,7 @@ body .error-elem-wrapper {
   font-size: 0.8rem;
   transition: 0.3s;
 }
-.main-section .inputs-section .artists-search-list-wrapper {
+.main .inputs-section .artists-search-list-wrapper {
   width: 90%;
   display: none;
   flex-direction: column;
@@ -196,7 +197,7 @@ body .error-elem-wrapper {
   user-select: none;
   z-index: 1;
 }
-.main-section .inputs-section .artists-search-list-wrapper .artists-search-item {
+.main .inputs-section .artists-search-list-wrapper .artists-search-item {
   width: 11rem;
   height: 2rem;
   display: flex;
@@ -205,22 +206,22 @@ body .error-elem-wrapper {
   gap: 0.5rem;
   cursor: pointer;
 }
-.main-section .inputs-section .artists-search-list-wrapper .artists-search-item:first-child {
+.main .inputs-section .artists-search-list-wrapper .artists-search-item:first-child {
   /* i don't use padding-top in wrapper cause wrapper don't hide when there is no items and needs more code for that*/
   margin-top: 0.5rem;
 }
-.main-section .inputs-section .artists-search-list-wrapper .artists-search-item:last-child {
+.main .inputs-section .artists-search-list-wrapper .artists-search-item:last-child {
   /* i don't use padding-bottom in wrapper cause wrapper don't hide when there is no items and needs more code for that*/
   margin-bottom: 0.5rem;
 }
-.main-section .inputs-section .artists-search-list-wrapper .artists-search-item .artists-search-item-img {
+.main .inputs-section .artists-search-list-wrapper .artists-search-item .artists-search-item-img {
   border-radius: 50%;
   width: 2rem;
   height: 2rem;
   /* for alt */
   font-size: 0.5rem;
 }
-.main-section .inputs-section .artists-search-list-wrapper .artists-search-item .artists-search-item-name {
+.main .inputs-section .artists-search-list-wrapper .artists-search-item .artists-search-item-name {
   color: var(--green-blue-color);
   width: 8.5rem;
   height: 2rem;
@@ -230,18 +231,32 @@ body .error-elem-wrapper {
   text-align: center;
 }
 
-.main-section .actions-section {
-  display: flex;
-  justify-content: center;
+.main .actions-section {
+  display: grid;
   align-items: center;
+  grid-template-columns: 9.5rem 5.5rem;
+  width: 15rem;
   margin-top: 1.5rem;
+  transition: 0.3s;
 }
-.main-section .actions-section .shuffle-button {
-  width: 4rem;
+.main .actions-section > * {
   cursor: pointer;
 }
+.main .actions-section .shuffle-button {
+  width: 4rem;
+  justify-self: right;
+}
+.main .actions-section .info-button {
+  width: 2rem;
+  justify-self: center;
+  fill: var(--green-color-off);
+  transition: 0.3s;
+}
+.main .actions-section .info-button:hover {
+  fill: var(--green-color-dark);
+}
 
-.main-section .result-panel {
+.main .result-panel {
   display: none;
   position: absolute;
   width: 18rem;
@@ -259,12 +274,12 @@ body .error-elem-wrapper {
   -webkit-user-select: none;
   user-select: none;
 }
-.main-section .result-panel .result-panel-track-img {
+.main .result-panel .result-panel-track-img {
   border-radius: 1rem;
   width: 10rem;
   height: 10rem;
 }
-.main-section .result-panel .result-panel-info-section {
+.main .result-panel .result-panel-info-section {
   width: 100%;
   height: max-content;
   display: flex;
@@ -273,45 +288,105 @@ body .error-elem-wrapper {
   align-items: center;
   gap: 0.3rem;
 }
-.main-section .result-panel .result-panel-info-section .result-panel-info-item {
+.main .result-panel .result-panel-info-section .result-panel-info-item {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.3rem;
 }
-.main-section .result-panel .result-panel-info-section .result-panel-info-item .result-panel-info-icon {
+.main .result-panel .result-panel-info-section .result-panel-info-item .result-panel-info-icon {
   width: 2rem;
   fill: var(--green-blue-color);
 }
-.main-section .result-panel .result-panel-info-section .result-panel-info-item .result-panel-info-name {
+.main .result-panel .result-panel-info-section .result-panel-info-item .result-panel-info-name {
   width: 8rem;
   height: max-content;
   text-align: center;
   color: var(--green-blue-color);
 }
-.main-section .result-panel .result-panel-actions-section {
+.main .result-panel .result-panel-actions-section {
   width: 100%;
   height: 3rem;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
-.main-section .result-panel .result-panel-actions-section .result-panel-actions-button {
+.main .result-panel .result-panel-actions-section .result-panel-actions-button {
   width: 2.5rem;
   cursor: pointer;
 }
-.main-section .result-panel .result-panel-actions-section .result-panel-actions-button .result-panel-close-btn-icon {
+.main .result-panel .result-panel-actions-section .result-panel-actions-button .result-panel-close-btn-icon {
   fill: var(--green-color-alpha);
 }
-.main-section .result-panel .result-panel-actions-section .result-panel-actions-button .result-panel-play-btn-icon {
+.main .result-panel .result-panel-actions-section .result-panel-actions-button .result-panel-play-btn-icon {
   fill: var(--green-color-light);
 }
-.main-section .result-panel .result-panel-actions-section .result-panel-actions-button .result-panel-playing-btn-icon {
+.main .result-panel .result-panel-actions-section .result-panel-actions-button .result-panel-playing-btn-icon {
   display: none;
   fill: var(--green-color-medium);
 }
-.main-section .result-panel .result-panel-actions-section .result-panel-actions-button .result-panel-spotify-icon {
+.main .result-panel .result-panel-actions-section .result-panel-actions-button .result-panel-spotify-icon {
   fill: var(--green-color-medium);
+}
+
+.main .info-panel {
+  display: none;
+  position: absolute;
+  width: 18rem;
+  height: max-content;
+  background: var(--background-blur);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  border-radius: 2rem;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 1rem 0;
+}
+.main .info-panel .info-panel-close-button {
+  position: absolute;
+  width: 2rem;
+  fill: var(--green-color-alpha);
+  top: 1rem;
+  right: 1rem;
+  z-index: 1;
+  cursor: pointer;
+}
+.main .info-panel lottie-player {
+  width: 15rem;
+  height: 15rem;
+  margin-top: -1rem;
+}
+.main .info-panel .info-panel-links-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: -1rem;
+  z-index: 1;
+}
+.main .info-panel .info-panel-links-section .info-panel-link {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--green-blue-color);
+  opacity: 0.8;
+  transition: 0.3s;
+}
+.main .info-panel .info-panel-links-section .info-panel-link .info-panel-link-icon {
+  width: 2.5rem;
+  fill: var(--green-blue-color);
+}
+.main .info-panel .info-panel-links-section .info-panel-link .info-panel-link-text {
+  text-align: center;
+  width: 100%;
+}
+.main .info-panel .info-panel-links-section .info-panel-link:hover {
+  opacity: 1;
 }
 
 @media all and (min-width: 992px) {
