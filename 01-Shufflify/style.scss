@@ -4,6 +4,7 @@
 :root {
   --background-color: #ffffff;
   --background-blur: #ebebeb7a;
+  --background-color-gray: #ebebeb;
   --green-color-medium: #1ed760;
   --green-color-light: #1ed75fd5;
   --green-color-dark: #1bc556d0;
@@ -289,20 +290,22 @@ body {
 }
 
 .main {
-  .result-panel {
+  .panels-style {
     display: none;
     position: absolute;
     width: 18rem;
     height: max-content;
-    background: var(--background-blur);
-    -webkit-backdrop-filter: blur(18px);
-    backdrop-filter: blur(18px);
+    /* will be replaced by blur filter, if supported */
+    background: var(--background-color-gray);
     border-radius: 2rem;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    gap: 1rem;
     padding: 1rem 0;
+  }
+
+  .result-panel {
+    gap: 1rem;
     overflow: hidden;
     -webkit-user-select: none;
     user-select: none;
@@ -374,72 +377,65 @@ body {
   }
 }
 
-.main {
-  .info-panel {
-    display: none;
+.main .info-panel {
+  .info-panel-close-button {
     position: absolute;
-    width: 18rem;
-    height: max-content;
-    background: var(--background-blur);
-    -webkit-backdrop-filter: blur(18px);
-    backdrop-filter: blur(18px);
-    border-radius: 2rem;
+    width: 2rem;
+    fill: var(--green-color-alpha);
+    top: 1rem;
+    right: 1rem;
+    z-index: 1;
+    cursor: pointer;
+  }
+
+  lottie-player {
+    width: 15rem;
+    height: 15rem;
+    margin-top: -1rem;
+  }
+
+  .info-panel-links-section {
+    display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
-    padding: 1rem 0;
+    gap: 0.5rem;
+    margin-top: -1rem;
+    z-index: 1;
 
-    .info-panel-close-button {
-      position: absolute;
-      width: 2rem;
-      fill: var(--green-color-alpha);
-      top: 1rem;
-      right: 1rem;
-      z-index: 1;
-      cursor: pointer;
-    }
-
-    lottie-player {
-      width: 15rem;
-      height: 15rem;
-      margin-top: -1rem;
-    }
-
-    .info-panel-links-section {
+    .info-panel-link {
+      width: 100%;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
       gap: 0.5rem;
-      margin-top: -1rem;
-      z-index: 1;
+      text-decoration: none;
+      color: var(--green-blue-color);
+      opacity: 0.8;
+      transition: 0.3s;
 
-      .info-panel-link {
+      .info-panel-link-icon {
+        width: 2.5rem;
+        fill: var(--green-blue-color);
+      }
+
+      .info-panel-link-text {
+        text-align: center;
         width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 0.5rem;
-        text-decoration: none;
-        color: var(--green-blue-color);
-        opacity: 0.8;
-        transition: 0.3s;
+      }
 
-        .info-panel-link-icon {
-          width: 2.5rem;
-          fill: var(--green-blue-color);
-        }
-
-        .info-panel-link-text {
-          text-align: center;
-          width: 100%;
-        }
-
-        &:hover {
-          opacity: 1;
-        }
+      &:hover {
+        opacity: 1;
       }
     }
+  }
+}
+
+@supports (backdrop-filter: blur(18px)) or (-webkit-backdrop-filter: blur(18px)) {
+  .main .panels-style {
+    background: var(--background-blur);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
   }
 }
 

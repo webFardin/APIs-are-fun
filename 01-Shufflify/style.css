@@ -3,6 +3,7 @@
 :root {
   --background-color: #ffffff;
   --background-blur: #ebebeb7a;
+  --background-color-gray: #ebebeb;
   --green-color-medium: #1ed760;
   --green-color-light: #1ed75fd5;
   --green-color-dark: #1bc556d0;
@@ -256,20 +257,21 @@ body .error-elem-wrapper {
   fill: var(--green-color-dark);
 }
 
-.main .result-panel {
+.main .panels-style {
   display: none;
   position: absolute;
   width: 18rem;
   height: max-content;
-  background: var(--background-blur);
-  -webkit-backdrop-filter: blur(18px);
-  backdrop-filter: blur(18px);
+  /* will be replaced by blur filter, if supported */
+  background: var(--background-color-gray);
   border-radius: 2rem;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  gap: 1rem;
   padding: 1rem 0;
+}
+.main .result-panel {
+  gap: 1rem;
   overflow: hidden;
   -webkit-user-select: none;
   user-select: none;
@@ -329,20 +331,6 @@ body .error-elem-wrapper {
   fill: var(--green-color-medium);
 }
 
-.main .info-panel {
-  display: none;
-  position: absolute;
-  width: 18rem;
-  height: max-content;
-  background: var(--background-blur);
-  -webkit-backdrop-filter: blur(18px);
-  backdrop-filter: blur(18px);
-  border-radius: 2rem;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  padding: 1rem 0;
-}
 .main .info-panel .info-panel-close-button {
   position: absolute;
   width: 2rem;
@@ -389,6 +377,13 @@ body .error-elem-wrapper {
   opacity: 1;
 }
 
+@supports (backdrop-filter: blur(18px)) or (-webkit-backdrop-filter: blur(18px)) {
+  .main .panels-style {
+    background: var(--background-blur);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+  }
+}
 @media all and (min-width: 992px) {
   html {
     font-size: 2vw;
